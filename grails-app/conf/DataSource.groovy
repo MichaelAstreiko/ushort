@@ -1,8 +1,42 @@
 dataSource {
     pooled = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    driverClassName = "com.mysql.jdbc.Driver"
+    dialect = 'org.hibernate.dialect.MySQL5InnoDBDialect'
+    username = "root"
+    password = "root"
+    properties {
+        /** The maximum number of active connections that can be allocated from
+         * this pool at the same time, or zero for no limit.
+         * Make it '-1' to prevent performance problems with idle connections
+         */
+        maxActive = -1
+        /**
+         * The maximum number of active connections that can remain idle in the
+         * pool, without extra ones being released, or zero for no limit.
+         */
+        maxIdle = 8
+        /**
+         * The minimum number of active connections that can remain idle in the
+         * pool, without extra ones being created, or 0 to create none.
+         */
+        minIdle = 0
+        /**
+         * The maximum number of milliseconds that the pool will wait (when there
+         * are no available connections) for a connection to be returned before
+         * throwing an exception, or -1 to wait indefinitely.
+         */
+        maxWait = 180000
+
+        minEvictableIdleTimeMillis = 1000 * 60 * 15
+        timeBetweenEvictionRunsMillis = 1000 * 60 * 15
+        numTestsPerEvictionRun = 3
+
+        testOnBorrow = true
+        testWhileIdle = true
+        testOnReturn = false
+
+        validationQuery = "select 1"
+    }
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -14,7 +48,7 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:mysql://localhost:3306/ushort"
         }
     }
     test {
@@ -26,18 +60,9 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-            pooled = true
-            properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=true
-               validationQuery="SELECT 1"
-            }
+            url = "jdbc:mysql://localhost:3306/ushort"
+            username = "ushort"
+            password = "ushort123"
         }
     }
 }
