@@ -11,10 +11,10 @@ ${message}
 <div style="color: #666666;font-style: italic">
   <h4>Example</h4>
   Make a call like<br/>
-  http://localhost:8080/ushort/api?urlToShort=http://www.cnn.com
+  <g:createLink controller="URLToken" action="shortenURL" params="[urlToShort:'http://www.cnn.com']" absolute="true"/>
   <br/><br/>
   In response you will get something like:<br/>
-  http://localhost:8080/ushort/ccxuM
+  <g:createLink controller="URLToken" action="index" params="[shortURL:'ccxuM']" absolute="true"/>
 </div>
 </body>
 </html>
