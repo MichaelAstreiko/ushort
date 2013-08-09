@@ -11,7 +11,7 @@ ${message}
 <div style="color: #666666;font-style: italic">
   <h4>Example</h4>
   Make a call like<br/>
-  <g:createLink controller="URLToken" action="shortenURL" params="[urlToShort:'http://www.cnn.com']" absolute="true"/>
+  <g:createLink controller="URLToken" action="shortenURL" absolute="true"/>?urlToShort=http://www.cnn.com
   <br/><br/>
   In response you will get something like:<br/>
   <g:createLink controller="URLToken" action="index" params="[shortURL:'ccxuM']" absolute="true"/>
