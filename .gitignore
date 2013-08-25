@@ -38,4 +38,6 @@
 
 # other
 *.iws
+*.ipr
+*.iml
 
